@@ -1,16 +1,28 @@
 clear
 clc
 % close all
-direc = '/home/pablo/Documentos/trabajo/proyectos/010-personality-confidence/lee_pid_matlab';
+direc = '/home/iair/Documents/Investigación/Metacog.Personality/Metacognition.PersonalityTraits';
 addpath(genpath(fullfile(direc,'jsonlab-2.0')))
 
 cd(direc)
 Responses = [];
-% json2data1=loadjson('pablo1_jatos_results_20201022004543.txt');
-% json2data2=loadjson('pablo2_jatos_results_20201022004543.txt');
 
-json2data1=loadjson('barby1_jatos_results_20201022142941.txt');
-json2data2=loadjson('barby2_jatos_results_20201022142941.txt');
+
+fileName = 'ELIMINAR_results_20211104213900_pid1.txt'; % filename in JSON extension
+fid = fopen(fileName); % Opening the file
+raw = fread(fid,inf); % Reading the contents
+str = char(raw'); % Transformation
+fclose(fid); % Closing the file
+json2data1 = jsondecode(str); % Using the jsondecode function to parse JSON from string
+json2data1 = json2data1'
+
+fileName = 'ELIMINAR_results_20211104213935_pid2.txt'; % filename in JSON extension
+fid = fopen(fileName); % Opening the file
+raw = fread(fid,inf); % Reading the contents
+str = char(raw'); % Transformation
+fclose(fid); % Closing the file
+json2data2 = jsondecode(str); % Using the jsondecode function to parse JSON from string
+
 
 cont = 0;
 for i = 1:size(json2data1,2)
